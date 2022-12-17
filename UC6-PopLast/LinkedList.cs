@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace UC_5DeleteElement
+namespace UC6_PopLast
 {
-    public class LinkedList
-    {
-        public Node head;
-        public void Add(int id)
+    internal class LinkedList
+    { public Node head;
+        public Node tail;
+        public void Add(int data)
         {
-            Node node = new Node(id);
+            Node node = new Node(data);
             if (this.head == null)
             {
                 this.head = node;
@@ -21,13 +21,9 @@ namespace UC_5DeleteElement
                 {
                     temp = temp.next;
                 }
-
                 temp.next = node;
-
-
-
             }
-            Console.WriteLine("{0} is inserted int linked list", node.id);
+            Console.WriteLine("{0} inserted into linked list", node.data);
         }
         public void Display()
         {
@@ -38,22 +34,29 @@ namespace UC_5DeleteElement
                 return;
             }
             while (temp != null)
-            {
-                Console.WriteLine(temp.id + "");
+                {
+                Console.WriteLine(temp.data + " ");
                 temp = temp.next;
             }
         }
-        public void poplast(int id) 
+        public Node popLast()
         {
-        Node temp=this.tail;
-            temp = tail;
-            if (tail!=null) 
+            if (head == null)
             {
-                
-                
-                temp = tail;
-                tail= tail.next;
-                temp = null;
+                return null;
             }
+            if (head.next == null)
+            {
+                return null;
+            }
+            Node NewNode = head;
+            while (NewNode.next.next != null)
+            {
+                NewNode = NewNode.next;
+            }
+            NewNode.next = null;
+            return head;
         }
-}   }
+
+    }
+}
